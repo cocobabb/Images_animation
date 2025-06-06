@@ -2,7 +2,11 @@
 export default {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        nanum: ['"Nanum Pen Script"', "cursive"],
+      },
+    },
   },
   plugins: [],
 };
