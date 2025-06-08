@@ -38,7 +38,7 @@ export default function App() {
   // 클릭 위치에 따라 이전/다음 슬라이드 실행
   const onImageClick = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX; // 이미지 내부에서 클릭한 x좌표
+    const clickX = e.clientX + rect.left; // 이미지 내부에서 클릭한 x좌표
     const half = rect.width / 2;
 
     if (clickX < half) {
@@ -65,9 +65,6 @@ export default function App() {
         <motion.div
           // flex로 3개의 이미지 한줄로 렌더링
           className="flex"
-          // initial={{ x: "-100%" }}
-          // animate={{ x: direction > 0 ? "-200%" : "0%" }}
-
           initial={{ x: direction > 0 ? "0%" : "-200%" }} // 방향에 따라 시작 위치 지정
           animate={{ x: "-100%" }} // 항상 가운데로 이동
           transition={{ duration: 0.3 }}
