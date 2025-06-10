@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# dotenv 환경 변수 파일
+**/.env
+
+# Docker
+**/.docker/
+
+# Optional (백엔드 빌드 시 생성된 DB 관련 파일들)
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+
+# Vite 관련
+**/dist/
+**/.vite/
