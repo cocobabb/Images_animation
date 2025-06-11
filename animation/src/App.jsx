@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function App() {
+  const [vote, setVote] = useState([]);
+
+  useEffect(() => {
+    const getVote = async () => {
+      try {
+        const res = await axios.get("/api/vote");
+        console.log(res);
+        console.log(res.data);
+        setVote(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getVote();
+  }, []);
+
   const images = [
     "/images/h_peach1.jpg",
     "/images/s_peach4.jpg",
@@ -155,6 +173,13 @@ export default function App() {
           </p>
         </div>
       </motion.section>
+
+      <h1>Vote List</h1>
+      <ul>
+        {vote.map((v) => (
+          <li key={v.id}>{v.name}</li>
+        ))}
+      </ul>
     </article>
   );
 }
