@@ -1,25 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import DescriptComponent from "./components/DescriptComponent";
 
 export default function App() {
-  const [vote, setVote] = useState([]);
-
-  useEffect(() => {
-    const getVote = async () => {
-      try {
-        const res = await axios.get("/api/vote");
-        console.log(res);
-        console.log(res.data);
-        setVote(res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getVote();
-  }, []);
-
   const images = [
     "/images/h_peach1.jpg",
     "/images/s_peach4.jpg",
@@ -126,60 +109,20 @@ export default function App() {
         딱복 VS 물복
       </motion.span>
 
-      <motion.section
-        initial={{ opacity: 0, x: "-20vw" }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ amount: 0.5 }}
-        transition={{
-          type: "tween",
-          duration: 0.5,
-          ease: "easeOut",
-        }}
-      >
-        <div className="w-[clamp(250px, 80vw, 600px)] mt-16 flex flex-col items-center gap-4 lg:flex-row">
-          <img
-            src="/images/h_peach4.jpg"
-            alt=""
-            className="aspect-square basis-1/4 rounded-md object-cover"
-          />
-          <p className="basis-3/4 text-center text-[clamp(0.8rem,1.5vw,10vw)] lg:text-left">
-            <span className="font-semibold">딱복: 딱딱한 복숭아</span>
-            <br />
-            아삭한 식감, 긴 보관 기간, 적은 과즙
-          </p>
-        </div>
-      </motion.section>
-
-      <motion.section
-        initial={{ opacity: 0, x: "20vw" }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ amount: 0.3 }}
-        transition={{
-          type: "tween", // 스프링 말고 tween 사용
-          duration: 0.6, // 0.6초간 실행
-          ease: "easeOut", // 자연스럽게 멈추는 곡선
-        }}
-      >
-        <div className="w-[clamp(250px, 80vw, 600px)] mb-56 mt-20 flex flex-col items-center gap-4 lg:flex-row">
-          <img
-            src="/images/s_peach1.jpg"
-            alt=""
-            className="aspect-square basis-1/3 rounded-md object-cover"
-          />
-          <p className="basis-2/3 text-center text-[clamp(0.8rem,1.5vw,10vw)] lg:text-left">
-            <span className="font-semibold">물복: 물렁한 복숭아</span>
-            <br />
-            부드러운 식감, 짧은 보관 기간, 많은 과즙
-          </p>
-        </div>
-      </motion.section>
-
-      <h1>Vote List</h1>
-      <ul>
-        {vote.map((v) => (
-          <li key={v.id}>{v.name}</li>
-        ))}
-      </ul>
+      <DescriptComponent
+        title="딱복: 딱딱한 복숭아"
+        contents="아삭한 식감, 긴 보관 기간, 적은 과즙"
+        imageSrc="/images/h_peach4.jpg"
+        direction="left"
+        order="first"
+      />
+      <DescriptComponent
+        title="물복: 물렁한 복숭아"
+        contents="부드러운 식감, 짧은 보관 기간, 많은 과즙"
+        imageSrc="/images/s_peach1.jpg"
+        direction="right"
+        order="second"
+      />
     </article>
   );
 }
