@@ -28,17 +28,15 @@ export default function DescriptComponent({
             className="aspect-square max-w-full rounded-md object-cover"
           />
         </div>
-        <div className="flex justify-around text-center md:w-2/5 md:text-left">
-          <p className="text-[clamp(1rem,2vw,5vw)]">
-            <span className="font-semibold">{title}</span>
-            <br />
-            {console.log(contentsArr)}
-            <ul>
-              {contentsArr.map((content, i) => {
-                return <li key={i}>- {content}</li>;
-              })}
-            </ul>
-          </p>
+
+        <div className="flex flex-col justify-around text-center text-[clamp(1rem,2vw,5vw)] md:w-2/5 md:text-left">
+          <span className="font-semibold">{title}</span>
+          <br />
+          <ul>
+            {contentsArr.map((content, i) => {
+              return <li key={i}>- {content}</li>;
+            })}
+          </ul>
         </div>
       </div>
     </motion.section>
