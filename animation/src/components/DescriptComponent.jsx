@@ -7,9 +7,9 @@ export default function DescriptComponent({
   contents,
   order,
 }) {
+  const contentsArr = contents.split(",");
   return (
     <motion.section
-      // variants={descriptVariants}
       initial={{ opacity: 0, x: direction === "left" ? "-20vw" : "20vw" }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ amount: order === "first" ? 0.5 : 0.3 }}
@@ -18,18 +18,28 @@ export default function DescriptComponent({
         duration: 0.6, // 0.6초간 실행
         ease: "easeOut", // 자연스럽게 멈추는 곡선
       }}
+      className="flex items-center"
     >
-      <div className="w-[clamp(250px, 80vw, 600px)] mt-56 flex flex-col items-center gap-4 lg:flex-row">
-        <img
-          src={imageSrc}
-          alt=""
-          className="aspect-square basis-1/3 rounded-md object-cover"
-        />
-        <p className="basis-2/3 text-center text-[clamp(0.8rem,1.5vw,10vw)] lg:text-left">
-          <span className="font-semibold">{title}</span>
-          <br />
-          {contents}
-        </p>
+      <div className="mt-56 flex w-[clamp(280px,80vw,60vw)] flex-col items-center gap-4 md:flex-row">
+        <div className="flex w-full items-center justify-center md:w-3/5">
+          <img
+            src={imageSrc}
+            alt=""
+            className="aspect-square max-w-full rounded-md object-cover"
+          />
+        </div>
+        <div className="flex justify-around text-center md:w-2/5 md:text-left">
+          <p className="text-[clamp(1rem,2vw,5vw)]">
+            <span className="font-semibold">{title}</span>
+            <br />
+            {console.log(contentsArr)}
+            <ul>
+              {contentsArr.map((content, i) => {
+                return <li key={i}>- {content}</li>;
+              })}
+            </ul>
+          </p>
+        </div>
       </div>
     </motion.section>
   );
