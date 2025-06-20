@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import DescriptComponent from "./components/DescriptComponent";
 import ImageSlider from "./components/ImageSlider";
+import VoteCompontent from "./components/VoteComponent";
 
 export default function App() {
   const images = [
@@ -48,6 +49,10 @@ export default function App() {
         direction="right"
         order="second"
       />
+
+      <br />
+      <br />
+      <VoteCompontent />
     </article>
   );
 }
